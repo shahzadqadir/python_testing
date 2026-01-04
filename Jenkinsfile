@@ -4,6 +4,7 @@ pipeline {
         stage ("build") {
             steps {
                 echo "Jenkins connected."
+                sh "python3 --version"
             }
         }
     }
