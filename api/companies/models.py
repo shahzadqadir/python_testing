@@ -1,3 +1,14 @@
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
+
+class Company(models.Model):
+    class CompanyStatus(models.TextChoices):
+        LAYOFFS = "Layoffs"
+        HIRING_FREEZE = "Hiring Freeze"
+        HIRING = "Hiring"
+    name = models.CharField(max_length=30, unique=False)
+    status = models.CharField(choices=CompanyStatus.choices, default=CompanyStatus.HIRING)
+    last_update = models.DateTimeField(default=timezone.now, editable=True)
+    application_link = models.URLField(blank=True)
+    notes = models.CharField(max_length=100, blank=True)
