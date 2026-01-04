@@ -1,10 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage ("prebuild") {
+            steps {
+                sh "pip install -r requirements.txt"
+            }
+        }
         stage ("build") {
             steps {
-                echo "Jenkins connected."
-                sh "python3 --version"
+                sh "python3 main.py"
             }
         }
     }
