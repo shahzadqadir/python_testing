@@ -7,12 +7,16 @@ from django.urls import reverse_lazy
 
 from companies.models import Company
 
+
 @pytest.mark.django_db
-class TestGetCompanies(TestCase):
+class BasicCompanyAPITestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
         self.companies_url = reverse_lazy("companies-list")
+
+
+class TestGetCompanies(BasicCompanyAPITestCase):
 
     def test_zero_companies_should_return_empty_list(self) -> None:
         response = self.client.get(self.companies_url)
