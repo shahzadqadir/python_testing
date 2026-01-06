@@ -7,25 +7,28 @@ def pretty_print(data: list[dict]):
             print(key, value)
         print("-----")
 
+
 def get_companies_list():
-    response = requests.get(
-        url="http://127.0.0.1:8000/companies/"
-    )
+    response = requests.get(url="http://127.0.0.1:8000/companies/")
     return response.json()
 
-def add_company(name: str, status:str="Hiring", application_link: str="", notes: str=""):
+
+def add_company(
+    name: str, status: str = "Hiring", application_link: str = "", notes: str = ""
+):
     response = requests.post(
         url="http://127.0.0.1:8000/companies/",
         json={
-            "name":name,
+            "name": name,
             "status": status,
             "application_link": application_link,
-            "notes": notes
-        }
+            "notes": notes,
+        },
     )
     return response
 
-def main():  
+
+def main():
     pretty_print(get_companies_list())
 
 
